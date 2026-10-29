@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MedLab Notes – Medical Laboratory Science Notes</title>
+<style>
+:root{--bg:#f6f8fb;--card:#fff;--tx:#14202e;--mu:#5c6b7c;--ac:#0d7a6b;--ac2:#e6f4f1;--bd:#dde4ec;--rd:#c0392b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1720;--card:#18222e;--tx:#e8eef5;--mu:#93a3b5;--ac:#3fc4b0;--ac2:#13302c;--bd:#2a3846;--rd:#ff7b6b}}
+:root[data-theme="dark"]{--bg:#0f1720;--card:#18222e;--tx:#e8eef5;--mu:#93a3b5;--ac:#3fc4b0;--ac2:#13302c;--bd:#2a3846;--rd:#ff7b6b}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:var(--ac);color:#fff;padding:18px 16px}
+header h1{margin:0;font-size:1.35rem}header p{margin:2px 0 0;opacity:.9;font-size:.9rem}
+.wrap{max-width:980px;margin:0 auto;padding:14px}
+.top{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+input,select,textarea,button{font:inherit;color:var(--tx)}
+input,select,textarea{width:100%;padding:9px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--card)}
+button{cursor:pointer;border:1px solid var(--bd);background:var(--card);padding:8px 14px;border-radius:8px}
+button.p{background:var(--ac);border-color:var(--ac);color:#fff}button.d{color:var(--rd);border-color:var(--rd)}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:12px 0}
+.tabs button{white-space:nowrap}.tabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px}
+.card h3{margin:0 0 4px;font-size:1.02rem}.cnt{color:var(--mu);font-size:.85rem}
+.note{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;border-top:1px solid var(--bd);padding:10px 0}
+.note:first-of-type{margin-top:8px}.note b{display:block}.note small{color:var(--mu)}
+.tag{display:inline-block;background:var(--ac2);color:var(--ac);border-radius:6px;padding:0 7px;font-size:.75rem;margin-right:6px}
+a.open{color:var(--ac);font-weight:600;text-decoration:none;white-space:nowrap}
+.empty{color:var(--mu);font-size:.9rem;margin-top:8px}
+.bar{background:var(--ac2);border:1px solid var(--ac);border-radius:10px;padding:10px 12px;margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:16px;z-index:20}
+.box{background:var(--card);border-radius:12px;padding:18px;width:100%;max-width:440px;max-height:90vh;overflow:auto}
+.box label{display:block;margin:10px 0 3px;font-size:.85rem;color:var(--mu)}
+.row{display:flex;gap:8px;margin-top:14px;justify-content:flex-end}
+.msg{font-size:.85rem;color:var(--rd);margin-top:8px}
+.hero{background:linear-gradient(135deg,#0d7a6b 0%,#0b4f6c 100%);padding:26px 16px 30px;position:relative;overflow:hidden}
+.hw{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0!important}
+.hw svg{width:250px;max-width:42%;flex:none}
+.hero h1{font-size:1.8rem;letter-spacing:-.5px}
+.st{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.st span{background:rgba(255,255,255,.16);border-radius:20px;padding:4px 12px;font-size:.85rem}
+.st b{font-size:1rem}
+.ch{display:flex;gap:10px;align-items:center}
+.ic{width:40px;height:40px;border-radius:11px;background:var(--ac2);color:var(--ac);display:flex;align-items:center;justify-content:center;flex:none}
+.ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card{border-top:3px solid var(--ac);transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.tabs button{border-radius:20px}
+@media(max-width:560px){.hw svg{display:none}.hero h1{font-size:1.5rem}}
+.band{display:flex;align-items:center;gap:16px;margin-top:22px;padding:16px 18px;border-radius:14px;background:linear-gradient(135deg,#7b1e3a,#0b4f6c);color:#fff}
+.band svg{width:230px;max-width:45%;flex:none}.band b{display:block;font-size:1rem;margin-bottom:4px}.band span{font-size:.88rem;opacity:.9}
+.row2{display:flex;gap:6px;margin-top:8px}.row2 button{flex:none}
+@media(max-width:560px){.band svg{width:120px}}
+footer{text-align:center;color:var(--mu);font-size:.8rem;padding:20px}
+</style></head><body>
+<div id="app"></div>
+<script type="application/json" id="data">{"pw":"p14261b45daeb1712c496b9602e12","notes":[]}</script>
+<script>
+let SUB={
+1:["Human Anatomy & Physiology – I","Biochemistry – I","Fundamentals of Medical Laboratory Science & Lab Safety","Communicative English","Digital Health & Computer Basics"],
+2:["Human Anatomy & Physiology – II","Biochemistry – II","General Microbiology","Basic Pathology","Environmental Science & Biomedical Waste"],
+3:["Clinical Biochemistry – I","Hematology – I","Medical Bacteriology","Histopathology Techniques – I","Basic Immunology & Serology"],
+4:["Clinical Biochemistry – II","Hematology – II","Immunohematology & Blood Banking","Parasitology & Mycology","Cytology"],
+5:["Virology & Clinical Microbiology","Advanced Histopathology & Cytology","Molecular Diagnostics","Clinical Pathology & Body Fluids","Laboratory Quality Management"],
+6:["Advanced Clinical Biochemistry & Endocrinology","Advanced Hematology & Hemostasis","Research Methodology & Biostatistics","Laboratory Management & Professional Ethics","Project / Internship Orientation"]};
+const IC=['<path d="M12 3C8 9 6 12 6 15a6 6 0 0012 0c0-3-2-6-6-12z"/>','<path d="M8 21h10M10 17h6M12 17a5 5 0 005-5M9 4l4 2-3 7-4-2z"/>','<path d="M9 3h6M10 3v13a2 2 0 004 0V3M10 10h4"/>','<circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2 2M16.4 16.4l2 2M18.4 5.6l-2 2M7.6 16.4l-2 2"/>','<path d="M7 3c0 6 10 6 10 12M17 3c0 6-10 6-10 12M8 7h8M8 13h8M7 19h10"/>'];
+const ico=i=>`<svg viewBox="0 0 24 24">${IC[i%5]}</svg>`;
+const HERO=`<svg viewBox="0 0 260 170" aria-hidden="true"><circle cx="130" cy="88" r="78" fill="#fff" opacity=".09"/><circle cx="130" cy="88" r="54" fill="#fff" opacity=".09"/><g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M80 150h80"/><path d="M100 150v-12h40v12" stroke-width="5"/><path d="M155 138c32-4 44-30 28-56"/><rect x="95" y="34" width="22" height="62" rx="5" transform="rotate(24 106 65)"/><path d="M97 112h42" stroke-width="5"/><path d="M82 24l24 12" stroke-width="9"/></g><g transform="translate(215 36)"><path d="M0-16C9-3 12 4 0 12C-12 4-9-3 0-16z" fill="#ff6b6b"/></g><g transform="translate(42 52) scale(.7)"><path d="M0-16C9-3 12 4 0 12C-12 4-9-3 0-16z" fill="#ff8e8e"/></g><g transform="translate(228 112) scale(.55)"><path d="M0-16C9-3 12 4 0 12C-12 4-9-3 0-16z" fill="#ff8e8e"/></g><rect x="28" y="96" width="13" height="46" rx="6" fill="#ffd166"/><rect x="46" y="88" width="13" height="54" rx="6" fill="#7bdff2"/><rect x="64" y="102" width="13" height="40" rx="6" fill="#b2f7a8"/><circle cx="200" cy="150" r="9" fill="none" stroke="#fff" stroke-width="3" opacity=".6"/><circle cx="222" cy="142" r="5" fill="#fff" opacity=".5"/></svg>`;
+const BAND=`<svg viewBox="0 0 300 120" aria-hidden="true"><g><circle cx="40" cy="60" r="26" fill="#e63946"/><circle cx="40" cy="60" r="11" fill="#c1121f" opacity=".6"/><circle cx="105" cy="38" r="20" fill="#e63946"/><circle cx="105" cy="38" r="8" fill="#c1121f" opacity=".6"/><circle cx="98" cy="90" r="22" fill="#e63946"/><circle cx="98" cy="90" r="9" fill="#c1121f" opacity=".6"/></g><circle cx="165" cy="62" r="30" fill="#b39ddb"/><g fill="#5e35b1"><circle cx="155" cy="55" r="7"/><circle cx="172" cy="60" r="8"/><circle cx="163" cy="74" r="6"/></g><g fill="#ffb4c1"><circle cx="215" cy="30" r="5"/><circle cx="228" cy="45" r="4"/><circle cx="208" cy="95" r="5"/></g><g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M250 12c30 20-30 40 0 60s-30 40 0 40"/><path d="M280 12c-30 20 30 40 0 60s30 40 0 40"/><path d="M256 30h18M256 55h18M256 80h18" stroke-width="2"/></g></svg>`;
+const TYPES=["PDF Notes","PPT","Video","MCQs","Previous Paper","Other"];
+const D=JSON.parse(document.getElementById('data').textContent);
+if(D.subs)SUB=D.subs;
+let sem=1,q="",admin=false,dirty=0,modal=null,err="";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const okUrl=u=>/^https?:\/\//i.test(u);
+const hh=(s,seed)=>{let h1=0xdeadbeef^seed,h2=0x41c6ce57^seed;for(let i=0,c;i<s.length;i++){c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);return 4294967296*(2097151&h2)+(h1>>>0)};
+async function sha(t){return 'p'+hh('mlt|'+t,0).toString(16)+hh(t,7).toString(16)}
+function noteHtml(n){return `<div class="note"><div><b>${esc(n.title)}</b><span class="tag">${esc(n.type)}</span><small>${esc(n.desc||'')}</small></div><div>${okUrl(n.url)?`<a class="open" href="${esc(n.url)}" target="_blank" rel="noopener">Open ↗</a>`:''}${admin?`<br><button class="d" data-del="${esc(n.id)}">Delete</button>`:''}</div></div>`}
+function render(){
+const term=q.trim().toLowerCase();
+let body="";
+if(term){
+const r=D.notes.filter(n=>(n.title+n.sub+(n.desc||'')+n.type).toLowerCase().includes(term));
+body=`<p class="cnt">${r.length} result(s) for “${esc(q)}” across all semesters</p><div class="card">${r.map(noteHtml).join('')||'<div class="empty">Nothing found.</div>'}</div>`;
+}else{
+body=`<div class="grid">${SUB[sem].map((s,i)=>{const l=D.notes.filter(n=>n.sem==sem&&n.sub===s);return `<div class="card"><div class="ch"><span class="ic">${ico(i)}</span><div><h3>${esc(s)}</h3><div class="cnt">${l.length} resource(s)</div></div></div>${l.map(noteHtml).join('')||'<div class="empty">Notes will be added soon.</div>'}</div>`}).join('')}</div>`}
+$('#app').innerHTML=`<header class="hero"><div class="wrap hw"><div><h1>MedLab Notes</h1><p>Every Medical Laboratory Science note in one place · NCAHP-aligned · 6 semesters</p><div class="st"><span><b>6</b> Semesters</span><span><b>${Object.values(SUB).flat().length}</b> Subjects</span><span><b>${D.notes.length}</b> Resources</span></div></div>${HERO}</div></header>
+<div class="wrap">
+${admin?`<div class="bar"><span><b>Admin mode</b> · ${dirty} unsaved change(s)</span><span><button data-a="add" class="p">+ Add note</button> <button data-a="subs">Subjects</button> <button data-a="pw">Password</button> <button data-a="save" class="p">Save &amp; publish</button> <button data-a="out">Logout</button></span></div>`:''}
+<div class="top"><input id="q" placeholder="Search notes, subjects, topics…" value="${esc(q)}" style="max-width:420px">${admin?'':'<button data-a="login">Admin login</button>'}</div>
+<div class="tabs">${[1,2,3,4,5,6].map(i=>`<button data-sem="${i}" class="${i==sem&&!term?'on':''}">Semester ${i}</button>`).join('')}</div>
+${body}<div class="band">${BAND}<div><b>Hematology · Microbiology · Biochemistry · Blood Banking · Histopathology</b><span>Notes, MCQs, PPTs and previous papers for every semester.</span></div></div></div>
+<footer>Subject list is indicative – check against the official NCAHP syllabus.</footer>${modal?modalHtml():''}`;
+const qi=$('#q');qi.oninput=e=>{q=e.target.value;const p=e.target.selectionStart;render();const n=$('#q');n.focus();n.setSelectionRange(p,p)};
+}
+function modalHtml(){
+if(modal=='login')return `<div class="modal"><div class="box"><h3>Admin login</h3><label>Password</label><input id="pw" type="password" autofocus><div class="msg">${esc(err)}</div><div class="row"><button data-a="x">Cancel</button><button class="p" data-a="dologin">Login</button></div></div></div>`;
+if(modal=='pw')return `<div class="modal"><div class="box"><h3>Change password</h3><label>New password (min 6 characters)</label><input id="np" type="password"><div class="msg">${esc(err)}</div><div class="row"><button data-a="x">Cancel</button><button class="p" data-a="dopw">Update</button></div></div></div>`;
+if(modal=='subj')return `<div class="modal"><div class="box"><h3>Semester ${sem} – subjects</h3><p class="cnt">Rename a subject by editing it, or remove it with ✕.</p>${SUB[sem].map((s,i)=>`<div class="row2"><input data-si="${i}" value="${esc(s)}"><button class="d" data-sd="${i}">✕</button></div>`).join('')}<label>Add a new subject</label><input id="ns" placeholder="e.g. Clinical Toxicology"><div class="row"><button data-a="x">Cancel</button><button class="p" data-a="dosub">Save</button></div></div></div>`;
+if(modal=='add')return `<div class="modal"><div class="box"><h3>Add note</h3><label>Semester</label><select id="fs">${[1,2,3,4,5,6].map(i=>`<option value="${i}" ${i==sem?'selected':''}>Semester ${i}</option>`).join('')}</select><label>Subject</label><select id="fj">${SUB[sem].map(s=>`<option>${esc(s)}</option>`).join('')}</select><label>Title</label><input id="ft"><label>Type</label><select id="fy">${TYPES.map(t=>`<option>${t}</option>`).join('')}</select><label>Link (Google Drive / PDF URL, https://…)</label><input id="fu"><label>Short description</label><textarea id="fd" rows="2"></textarea><div class="msg">${esc(err)}</div><div class="row"><button data-a="x">Cancel</button><button class="p" data-a="doadd">Add</button></div></div></div>`;
+return ''}
+async function save(){
+const a=await claude.use('artifact');
+if(!a){alert('Publishing is not available here. Open this page as its owner to save changes.');return}
+const c=document.documentElement.cloneNode(true);
+c.querySelector('#app').innerHTML='';
+c.querySelector('#data').textContent=JSON.stringify(D).replace(/</g,'\\u003c');
+try{await a.publish('<!DOCTYPE html>\n'+c.outerHTML)}catch(e){if(e&&e.code!=='conflict')alert('Could not publish: '+(e.message||e.code))}}
+document.addEventListener('change',e=>{if(e.target.id==='fs'){sem=+e.target.value;const v={t:$('#ft').value,u:$('#fu').value,d:$('#fd').value};render();$('#ft').value=v.t;$('#fu').value=v.u;$('#fd').value=v.d}});
+document.addEventListener('click',async e=>{
+const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+if(d.sem){sem=+d.sem;q="";return render()}
+if(d.sd!==undefined){const nm=SUB[sem][+d.sd];const c=D.notes.filter(n=>n.sem==sem&&n.sub===nm).length;if(!c||confirm(c+' note(s) under this subject will also be removed. Continue?'))b.parentElement.remove();return}
+if(d.del){if(confirm('Delete this note?')){D.notes=D.notes.filter(n=>n.id!==d.del);dirty++;render()}return}
+const a=d.a;err="";
+if(a==='login'){modal='login';render()}
+else if(a==='x'){modal=null;render()}
+else if(a==='out'){admin=false;render()}
+else if(a==='pw'){modal='pw';render()}
+else if(a==='add'){modal='add';render()}
+else if(a==='subs'){modal='subj';render()}
+else if(a==='dosub'){const rows=[...document.querySelectorAll('[data-si]')].map(i=>({o:SUB[sem][+i.dataset.si],n:i.value.trim()})).filter(r=>r.n);const nw=$('#ns').value.trim();const names=rows.map(r=>r.n);if(nw)names.push(nw);if(new Set(names).size!==names.length){alert('Two subjects have the same name.');return}D.notes.forEach(n=>{if(n.sem==sem){const r=rows.find(r=>r.o===n.sub);n.sub=r?r.n:null}});D.notes=D.notes.filter(n=>n.sub);SUB[sem]=names;D.subs=JSON.parse(JSON.stringify(SUB));dirty++;modal=null;render()}
+else if(a==='save'){await save()}
+else if(a==='dologin'){const v=$('#pw').value;const ok=D.pw?(await sha(v))===D.pw:v==='mltadmin';if(ok){admin=true;modal=null}else err='Wrong password.';render()}
+else if(a==='dopw'){const v=$('#np').value;if(v.length<6){err='Too short.';return render()}D.pw=await sha(v);dirty++;modal=null;render()}
+else if(a==='doadd'){const t=$('#ft').value.trim(),u=$('#fu').value.trim();
+if(!t){err='Title is required.';return render_keep()}
+if(u&&!okUrl(u)){err='Link must start with http(s)://';return render_keep()}
+D.notes.push({id:Date.now().toString(36),sem:+$('#fs').value,sub:$('#fj').value,title:t,type:$('#fy').value,url:u,desc:$('#fd').value.trim()});
+dirty++;modal=null;render()}});
+function render_keep(){const v=['ft','fy','fu','fd','fj'].map(i=>$('#'+i).value);render();['ft','fy','fu','fd','fj'].forEach((i,k)=>$('#'+i).value=v[k])}
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&modal==='login')document.querySelector('[data-a=dologin]').click()});
+render();
+</script>
+</body></html>
